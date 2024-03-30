@@ -41,7 +41,7 @@ function App() {
   return (
     <div className="App">
       <header className="header">
-        <h1 className="title">Stunning Webpage</h1>
+        <h1 className="title">Clipboard by Chai</h1>
       </header>
       <main className="main">
         <input
