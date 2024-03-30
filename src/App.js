@@ -12,7 +12,7 @@ function App() {
 
   const handleSave = () => {
     // Example API endpoint
-    const apiUrl = 'https://example.com/api/save';
+    const apiUrl = 'https://clipboard-backend-tau.vercel.app/test-post';
 
     // Data to be sent to the API
     const data = { text };
