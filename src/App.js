@@ -11,7 +11,8 @@ function App() {
   };
 
   const handleSave = async () => {
-    const apiUrl = 'https://example.com/api/save';
+    const apiUrl = 'https://clipboard-backend-tau.vercel.app/test-post';
+    // console.log('button clicked.');
 
     // Data to be sent to the API
     const data = { text };
