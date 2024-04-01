@@ -10,32 +10,31 @@ function App() {
     setText(event.target.value);
   };
 
-  const handleSave = () => {
-    // Example API endpoint
-    const apiUrl = 'https://clipboard-backend-tau.vercel.app/test-post';
+  const handleSave = async () => {
+    const apiUrl = 'https://example.com/api/save';
 
     // Data to be sent to the API
     const data = { text };
 
-    fetch(apiUrl, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        // Add any additional headers if required
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        // Handle successful response
-        console.log('Text saved successfully');
-      })
-      .catch(error => {
-        // Handle errors
-        console.error('There was a problem with the fetch operation:', error);
+    try {
+      const response = await fetch(apiUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data),
       });
+
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+
+      // Handle successful response
+      console.log('Text saved successfully');
+    } catch (error) {
+      // Handle errors
+      console.error('There was a problem with the fetch operation:', error);
+    }
   };
 
   return (
