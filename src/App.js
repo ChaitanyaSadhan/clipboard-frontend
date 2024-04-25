@@ -9,7 +9,7 @@ function App() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post('https://localhost:3050/test', { text });
+      const response = await axios.post('https://clipboard-backend-tau.vercel.app/test', { text });
       console.log(response.data);
     } catch (error) {
       console.error(error);
