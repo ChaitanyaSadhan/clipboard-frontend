@@ -1,61 +1,28 @@
 // App.js
 
 import React, { useState } from 'react';
-import './App.css'; // Import CSS file for styling
+import axios from 'axios';
 
 function App() {
   const [text, setText] = useState('');
 
-  const handleChange = (event) => {
-    setText(event.target.value);
-  };
-
-  const handleSave = async () => {
-    const apiUrl = 'https://clipboard-backend-tau.vercel.app/test-post';
-    // console.log('button clicked.');
-
-    // Data to be sent to the API
-    const data = { text };
-
+  const handleSubmit = async (event) => {
+    event.preventDefault();
     try {
-      const response = await fetch(apiUrl, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
-
-      // Handle successful response
-      console.log('Text saved successfully');
+      const response = await axios.post('https://localhost:3050/test', { text });
+      console.log(response.data);
     } catch (error) {
-      // Handle errors
-      console.error('There was a problem with the fetch operation:', error);
+      console.error(error);
     }
   };
 
   return (
-    <div className="App">
-      <header className="header">
-        <h1 className="title">Clipboard by Chai</h1>
-      </header>
-      <main className="main">
-        <input
-          type="text"
-          value={text}
-          onChange={handleChange}
-          placeholder="Enter text..."
-          className="text-field"
-        />
-        <button className="save-button" onClick={handleSave}>Save</button>
-      </main>
-      <footer className="footer">
-        <p>&copy; 2024 Stunning Webpage. All rights reserved.</p>
-      </footer>
+    <div>
+      <h1>My React App</h1>
+      <form onSubmit={handleSubmit}>
+        <textarea value={text} onChange={(e) => setText(e.target.value)} />
+        <button type="submit">Submit</button>
+      </form>
     </div>
   );
 }
